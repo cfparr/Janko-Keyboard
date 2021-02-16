@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel='stylesheet' href="css.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.9/Tone.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react-dom.min.js"></script>
+<div id="app"></div>
+  </head>
+  <body>
+    
+    <div id='piano'></div>
+<div id='tones'>
+  <div>
+  <input type="radio" name="choosetone" id="Normal" /> Normal
+  </div>
+  <div>
+  <input type="radio" name="choosetone" id="Distortion" /> Distortion
+  </div>
+  <div>
+  <input type="radio" name="choosetone" id="AutoWah" /> AutoWah
+  </div>
+  <div>
+  <input type="radio" name="choosetone" id="Reverb" /> Reverb
+  </div>
+  <div>
+    <input type="radio" name="choosetone" id="Phaser" /> Phaser
+    </div>
+  <div>
+  <input type="radio" name="choosetone" id="Chebyshev" /> Chebyshev
+  </div>
+  <div>
+  <input type="radio" name="choosetone" id="FMSynth" /> FMSynth
+  </div>
+
+</div>
+
+<div id='scales'>
+    <button class="btn ionian" id=ionian>Ionian</button>
+    <button class="btn dorian" id=dorian>Dorian</button>
+    <button class="btn phrygian"id=phrygian>Phrygian</button>
+    <button class="btn lydian" id=lydian >Lydian</button>
+    <button class="btn myxolydian" id=myxolydian>Myxolydian</button>
+    <button class="btn aeolian"id=aeolian>Aeolian</button>
+    <button class="btn locrian" id=locrian >Locrian</button>
+    
+    <div>
+      <input type="radio" name="type" id="RootDo" onclick= "whichRoot()"/> 
+      Do
+      <input type="radio" name="type" id="RootDo#" onclick= "whichRoot()"/>
+      Do#
+      <input type="radio" name="type" id="RootRe" onclick= "whichRoot()" />
+      Re
+      <input type="radio" name="type" id="RootRe#" onclick= "whichRoot()"/> 
+      Re#
+      <input type="radio" name="type" id="RootMi" onclick= "whichRoot()"/>
+      Mi
+      <input type="radio" name="type" id="RootFa" onclick= "whichRoot()" />
+      Fa
+      <input type="radio" name="type" id="RootFa#" onclick= "whichRoot()"/> 
+      Fa#
+      <input type="radio" name="type" id="RootSol" onclick= "whichRoot()"/>
+      Sol
+      <input type="radio" name="type" id="RootSol#" onclick= "whichRoot()" />
+      Sol#
+      <input type="radio" name="type" id="RootLa" onclick= "whichRoot()"/> 
+      La
+      <input type="radio" name="type" id="RootLa#" onclick= "whichRoot()"/>
+      La#
+      <input type="radio" name="type" id="RootSi" onclick= "whichRoot()"/>
+      Si
+    </div>
+  </div>   
+    <div id='Progression'>
+    <div>
+    <input type="radio" name="rootch" id="ChordC" /> C 
+    
+    <input type="radio" name="mode" id="ChordIonian" /> Ionian
+    </div>
+
+    <div>
+      <input type="radio" name="rootch" id="ChordCsharp" /> C# 
+      
+      <input type="radio" name="mode" id="ChordDorian" /> Dorian
+      </div>
+
+      <div>
+        <input type="radio" name="rootch" id="ChordD" /> D 
+        
+        <input type="radio" name="mode" id="ChordPhrygian" /> Phrygian
+      </div>
+
+      <div>
+        <input type="radio" name="rootch" id="ChordDsharp" /> D# 
+       
+        <input type="radio" name="mode" id="ChordLydian" /> Lydian
+      </div>
+
+      <div>
+        <input type="radio" name="rootch" id="ChordE" /> E 
+
+        <input type="radio" name="mode" id="ChordMyxolydian" /> Myxolydian
+      </div>
+
+      <div>
+        <input type="radio" name="rootch" id="ChordF" /> F 
+
+        <input type="radio" name="mode" id="ChordAeolian" /> Aeolian
+      </div>
+
+      <div>
+        <input type="radio" name="rootch" id="ChordFsharp" /> F# 
+
+        <input type="radio" name="mode" id="ChordLocrian" /> Locrian
+      </div>
+      
+      <div>
+      <input type="radio" name="rootch" id="ChordG" /> G 
+      </div>
+
+      <div>
+        <input type="radio" name="rootch" id="ChordGsharp" /> G# 
+      </div>
+      <div>
+        <input type="radio" name="rootch" id="ChordA" /> A
+      
+      </div>
+      
+      <div>
+        <input type="radio" name="rootch" id="ChordAsharp" /> A# 
+         
+      </div>
+      
+      <div>
+        <input type="radio" name="rootch" id="ChordB" /> B
+      </div>
+
+
+
+      <button class="btn chords" id=chords>Play Progres</button>
+      
+      </div>
+    </div>
+ 
+      <div id='Chord'>
+        <div>
+        <input type="radio" name="explChord" id="explC" /> C
+        <input type="radio" name="explTypeChord" id="expMajor" /> Major
+        </div>
+        <div>
+        <input type="radio" name="explChord" id="explCsharp" /> C# 
+        <input type="radio" name="explTypeChord" id="expMinor" /> Minor
+        </div>
+        <div>
+        <input type="radio" name="explChord" id="explD" /> D
+        <input type="radio" name="explTypeChord" id="expDim" /> Dim
+        </div>
+        <div>
+        <input type="radio" name="explChord" id="explDsharp" /> D#
+        </div>
+        <div>
+        <input type="radio" name="explChord" id="explE" /> E
+        </div>
+        <div>
+        <input type="radio" name="explChord" id="explF" /> F
+        </div>
+        <div>
+        <input type="radio" name="explChord" id="explFsharp" /> F#
+        </div>
+        <div>
+        <input type="radio" name="explChord" id="explG" /> G
+        </div>
+        <div>
+        <input type="radio" name="explChord" id="explGsharp" /> G#
+        </div>
+        <div>
+        <input type="radio" name="explChord" id="explA" /> A
+        </div>
+        <div>
+        <input type="radio" name="explChord" id="explAsharp" /> A#
+        </div>
+        <div>
+        <input type="radio" name="explChord" id="explB" /> B
+        </div>
+        
+        <button class="btn explain" id='explain' >Play Triads</button>
+
+      </div>
+
+
+
+
+      
+  </body>
+
+  <script src='project.js'></script>
+</html>

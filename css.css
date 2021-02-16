@@ -1,0 +1,170 @@
+body {
+  background-color:rgb(126, 171, 177);
+}
+
+
+#piano{
+  position:absolute;
+  margin:auto;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  border:0.5vmin solid black;
+  width: 156vmin;
+  height: 30vmin;
+}
+
+#scales{
+  position:absolute;
+  left:240px;
+  float: left;
+  top:70px;
+}
+
+
+.lowerNote{
+  position: relative;
+  background-color: white ;
+  border-right: 0.1vmin solid black;
+  height: 40%;
+  width: 35px;
+  margin:-10px;
+  float:left;
+  left:15px;
+  top: 100px;
+  
+}
+
+
+
+.upperNote{
+  position:relative;
+  background-color:black ;
+  border-right: 0.1vmin solid black;
+  height: 40%;
+  width:  35px;
+  left:15px;
+  float: left;
+  top:8px;
+  transform: translateY(-5px);
+  
+}
+.btn {
+  border: 2px solid black;
+  background-color: white;
+  color: black;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Green */
+.ionian {
+  border-color: #4CAF50;
+  color: green;
+}
+
+.ionian:hover {
+  background-color: #4CAF50;
+  color: white;
+}
+
+/* Blue */
+.dorian {
+  border-color: #2196F3;
+  color: dodgerblue
+}
+
+.dorian:hover {
+  background: #2196F3;
+  color: white;
+}
+
+/* Orange */
+.phrygian {
+  border-color: #ff9800;
+  color: orange;
+}
+
+.phrygian:hover {
+  background: #ff9800;
+  color: white;
+}
+
+/* Red */
+.lydian {
+  border-color: #f44336;
+  color: red
+}
+
+.lydian:hover {
+  background: #f44336;
+  color: white;
+}
+
+/* Gray */
+.myxolydian {
+  border-color: #16878f;
+  color: #16878f;
+}
+
+.myxolydian:hover {
+  background: #16878f;
+  color: white;
+}
+/* Gray */
+.aeolian {
+  border-color: #4868be;
+  color: #4868be;
+}
+
+.aeolian:hover {
+  background: #4868be;
+  color: white;
+}
+/* Gray */
+.locrian {
+  border-color: #230f6b;
+  color: #230f6b;
+}
+
+.locrian:hover {
+  background: #9180d1;
+  color: white;
+}
+
+.chords {
+  border-color: #9180d1;
+  color: #9180d1;
+}
+
+.chords:hover {
+  background: #9180d1;
+  color: white;
+}
+
+.explain {
+  border-color: rgb(202, 158, 207);
+  color: rgb(202, 158, 207);
+}
+
+.explain:hover {
+  background: rgb(202, 158, 207);
+  color:white;
+}
+
+
+#Progression{
+  position:relative;
+  left:10px;
+  float: left;
+  top:50px;
+}
+#Chord{
+  position:relative;
+  left:-20px;
+  float: right;
+  top:50px;
+  
+}
