@@ -839,12 +839,73 @@ for (let i=0;i<(modo.length)+1; i++){
     var C4min= ['0','3','7']
     var C4dim= ['0','3','6']
     var CIonian = C4maj.concat(D4min,E4min,F4maj,G4maj,A4min,B4dim,C5maj,C5maj,B4dim,A4min,G4maj,F4maj,E4min,D4min,C4maj);
+    var Cionianstr= ["C","C#","D","D#","E","F","F#","G","G#","A","A#","B","C","C#","D","D#","E","F","F#","G","G#","A","A#","B"]
+    var Cionianstr2= ["maj","min","min","maj","maj","min","dim","maj","maj","dim","min","maj","maj","min","min","maj"]
+    var indCionian=['0','2','4','5','7','9','11','0','0','11','9','7','5','4','2','0']
+    ///
     var CDorian = C4min.concat(D4min,D4majsharp,F4maj,G4min,A4dim,A4majsharp,C5min,C5min,A4majsharp,A4dim,G4min,F4maj,D4majsharp,D4min,C4min);
+    var Cdorianstr= ["min","min","maj","maj","min","dim","maj","min","min","maj","dim","min","maj","maj","min","min"]
+    var indCdorian=['0','2','3','5','7','9','10','0','0','10','9','7','5','3','2','0']
+    ///
     var CPhrygian = C4min.concat(C4majsharp,D4majsharp,F4min,G4dim,G4majsharp,A4minsharp,C5min,C5min,A4minsharp,G4majsharp,G4dim,F4min,D4majsharp,C4majsharp,C4min);
+    var CPhrygianstr= ["min","maj","maj","min","dim","maj","min","min","min","min","maj","dim","min","maj","maj","min"]
+    var indCPhrygian=['0','1','3','5','7','8','10','0','0','10','8','7','5','3','1','0']
+    ///
     var CLydian = C4maj.concat(D4maj,E4min,F4dimsharp,G4maj,A4min,B4min,C5maj,C5maj,B4min,A4min,G4maj,F4dimsharp,E4min,D4maj,C4maj);
+    var CLydianstr= ["maj","maj","min","dim","maj","min","min","maj","maj","min","min","maj","dim","min","maj","maj"]
+    var indCLydian=['0','2','4','6','7','9','11','0','0','11','9','7','6','4','2','0']
+    ///
     var CMyxolydian = C4maj.concat(D4min,E4dim,F4maj,G4min,A4min,A4majsharp,C5maj,C5maj,A4majsharp,A4min,G4min,F4maj,E4dim,D4min,C4maj);
+    var CMyxolydianstr= ["maj","min","dim","maj","min","min","maj","maj","maj","maj","min","min","maj","dim","min","maj"]
+    var indCMyxolydian=['0','2','4','5','7','9','10','0','0','10','9','7','5','4','2','0']
+    ///
     var CAeolian = C4min.concat(D4dim,D4majsharp,F4min,G4min,G4majsharp,A4majsharp,C5min,C5min,A4majsharp,G4majsharp,G4min,F4min,D4majsharp,D4dim,C4min);
+    var CAeolianstr= ["min","dim","maj","min","min","maj","maj","min","min","maj","maj","min","min","maj","dim","min"]
+    var indCAeolian=['0','2','3','5','7','8','10','0','0','10','8','7','5','3','2','0']
+
+    ///
     var CLocrian = C4dim.concat(C4majsharp,D4minsharp,F4min,F4majsharp,G4majsharp,A4minsharp,C5dim,C5dim,A4minsharp,G4majsharp,F4majsharp,F4min,D4minsharp,C4majsharp,C4dim);
+    var CLocrianstr= ["dim","maj","min","min","maj","maj","min","dim","dim","min","maj","maj","min","min","maj","dim"]
+    var indCLocrian=['0','1','3','5','6','8','10','0','0','10','8','6','5','3','1','0']
+
+  
+
+  function createProgre (m1,m2,cod){
+    var m3= []
+    for (var i = 0; i < cod.length; i++){
+    
+    console.log(cod[i])
+    console.log (m1[cod[i]])
+     m3.push(m1[cod[i]])
+     console.log(m3)
+    }
+  
+
+      var sum = m3.map(function (num, idx) {
+        return num + m2[idx];
+      }); // [6,8,10,12]
+     return sum
+
+
+
+  }
+
+
+  
+
+
+  function moveind(n,indProg) {
+    for (let i=0;i<indProg.length;i++){
+      var a = parseInt(indProg[i]) 
+      var sum= a+n
+      indProg[i] = sum.toString();
+      }
+    return indProg
+  }
+
+
+
+
 
     function moveChr(moveChord,modeChord) {
       for (let i=0;i<modeChord.length;i++){
@@ -860,30 +921,69 @@ for (let i=0;i<(modo.length)+1; i++){
   if (document.getElementById("ChordC").checked){
     if (document.getElementById("ChordIonian").checked){
     playChords(CIonian)
+    progstring=createProgre(Cionianstr,Cionianstr2,indCionian)
+ 
+    document.getElementById("ProgresString").innerHTML =progstring
+
     }
     
     if (document.getElementById("ChordDorian").checked){
+
     playChords(CDorian)
+
+    progstring=createProgre(Cionianstr,Cdorianstr,indCdorian)
+ 
+    document.getElementById("ProgresString").innerHTML =progstring
+
     }
 
     if (document.getElementById("ChordPhrygian").checked){
       playChords(CPhrygian)
+
+      progstring=createProgre(Cionianstr,CPhrygianstr,indCPhrygian)
+     
+      document.getElementById("ProgresString").innerHTML =progstring
+
+
       }
      
     if (document.getElementById("ChordLydian").checked){
       playChords(CLydian)
+
+      progstring=createProgre(Cionianstr,CLydianstr,indCLydian)
+
+      document.getElementById("ProgresString").innerHTML =progstring
+
+
+
       }
 
     if (document.getElementById("ChordMyxolydian").checked){
     playChords(CMyxolydian)
+    
+    progstring=createProgre(Cionianstr,CMyxolydianstr,indCMyxolydian)
+  
+    document.getElementById("ProgresString").innerHTML =progstring
+
     }
 
     if (document.getElementById("ChordAeolian").checked){
       playChords(CAeolian)
+  
+      progstring=createProgre(Cionianstr,CAeolianstr,indCAeolian)
+
+      document.getElementById("ProgresString").innerHTML =progstring
+
       }
 
     if (document.getElementById("ChordLocrian").checked){
       playChords(CLocrian)
+    
+      progstring=createProgre(Cionianstr,CLocrianstr,indCLocrian)
+
+      document.getElementById("ProgresString").innerHTML =progstring
+
+
       }
   }
 
@@ -892,36 +992,84 @@ for (let i=0;i<(modo.length)+1; i++){
     if (document.getElementById("ChordIonian").checked){
       Csharpionian=moveChr(1,CIonian)
       playChords(Csharpionian)
+
+      indCionian= moveind(1,indCionian)
+      m3=createProgre(Cionianstr,Cionianstr2,indCionian)
+  
+      document.getElementById("ProgresString").innerHTML =m3
     }
     
     if (document.getElementById("ChordDorian").checked){
       Csharpdorian=moveChr(1,CDorian)
       playChords(Csharpdorian)
+
+
+
+    indCdorian= moveind(1,indCdorian)  
+    progstring=createProgre(Cionianstr,Cdorianstr,indCdorian)
+    document.getElementById("ProgresString").innerHTML =progstring
     }
 
     if (document.getElementById("ChordPhrygian").checked){
       CsharpPhrygian=moveChr(1,CPhrygian)
       playChords(CsharpPhrygian)
+
+      
+      indPhrygian= moveind(1,indCPhrygian)  
+      progstring=createProgre(Cionianstr,CPhrygianstr,indPhrygian)
+      console.log(progstring)
+      document.getElementById("ProgresString").innerHTML =progstring
+
+
       }
      
     if (document.getElementById("ChordLydian").checked){
       CsharpLydian=moveChr(1,CLydian)
       playChords(CsharpLydian)
+
+
+      indCLydian= moveind(1,indCLydian)  
+      progstring=createProgre(Cionianstr,CLydianstr,indCLydian)
+      console.log(progstring)
+      document.getElementById("ProgresString").innerHTML =progstring
+
       }
 
     if (document.getElementById("ChordMyxolydian").checked){
       CsharpMyxolydian=moveChr(1,CMyxolydian)
       playChords(CsharpMyxolydian)
+
+      indCMyxolydian= moveind(1,indCMyxolydian)  
+      progstring=createProgre(Cionianstr,CMyxolydianstr,indCMyxolydian)
+      console.log(progstring)
+      document.getElementById("ProgresString").innerHTML =progstring
+
+
+
     }
 
     if (document.getElementById("ChordAeolian").checked){
       CsharpAeolian=moveChr(1,CAeolian)
       playChords(CsharpAeolian)
+
+      indCAeolian= moveind(1,indCAeolian)  
+      progstring=createProgre(Cionianstr,CAeolianstr,indCAeolian)
+      console.log(progstring)
+      document.getElementById("ProgresString").innerHTML =progstring
+
+
       }
 
     if (document.getElementById("ChordLocrian").checked){
       CsharpLocrian=moveChr(1,CLocrian)
       playChords(CsharpLocrian)
+
+      
+      indCLocrian= moveind(1,indCLocrian)  
+      progstring=createProgre(Cionianstr,CLocrianstr,indCLocrian)
+      console.log(progstring)
+      document.getElementById("ProgresString").innerHTML =progstring
+
 
       }
   }
@@ -931,36 +1079,88 @@ for (let i=0;i<(modo.length)+1; i++){
       if (document.getElementById("ChordIonian").checked){
         Dionian=moveChr(2,CIonian)
         playChords(Dionian)
+
+
+
+        indCionian= moveind(2,indCionian)
+        m3=createProgre(Cionianstr,Cdorianstr,indCionian)
+        console.log(m3)
+        document.getElementById("ProgresString").innerHTML =m3
+
       }
       
       if (document.getElementById("ChordDorian").checked){
         Ddorian=moveChr(2,CDorian)
         playChords(Ddorian)
+
+
+
+        inddorian= moveind(2,indCdorian)  
+        progstring=createProgre(Cionianstr,Cdorianstr,inddorian)
+        console.log(progstring)
+        document.getElementById("ProgresString").innerHTML =progstring
+
       }
   
       if (document.getElementById("ChordPhrygian").checked){
         DPhrygian=moveChr(2,CPhrygian)
         playChords(DPhrygian)
+
+      
+        indPhrygian= moveind(2,indCPhrygian)  
+        progstring=createProgre(Cionianstr,CPhrygianstr,indPhrygian)
+        console.log(progstring)
+        document.getElementById("ProgresString").innerHTML =progstring
+
+
         }
        
       if (document.getElementById("ChordLydian").checked){
         DLydian=moveChr(2,CLydian)
         playChords(DLydian)
+
+        indCLydian= moveind(2,indCLydian)  
+        progstring=createProgre(Cionianstr,CLydianstr,indCLydian)
+        console.log(progstring)
+        document.getElementById("ProgresString").innerHTML =progstring
+  
+
         }
   
       if (document.getElementById("ChordMyxolydian").checked){
         DMyxolydian=moveChr(2,CMyxolydian)
         playChords(DMyxolydian)
+
+
+        indCMyxolydian= moveind(2,indCMyxolydian)  
+        progstring=createProgre(Cionianstr,CMyxolydianstr,indCMyxolydian)
+        console.log(progstring)
+        document.getElementById("ProgresString").innerHTML =progstring
+
+
       }
   
       if (document.getElementById("ChordAeolian").checked){
         DAeolian=moveChr(2,CAeolian)
         playChords(DAeolian)
+
+        indCAeolian= moveind(2,indCAeolian)  
+        progstring=createProgre(Cionianstr,CAeolianstr,indCAeolian)
+        console.log(progstring)
+        document.getElementById("ProgresString").innerHTML =progstring
+
         }
   
       if (document.getElementById("ChordLocrian").checked){
         DLocrian=moveChr(2,CLocrian)
         playChords(DLocrian)
+
+      
+        indCLocrian= moveind(2,indCLocrian)  
+        progstring=createProgre(Cionianstr,CLocrianstr,indCLocrian)
+        console.log(progstring)
+        document.getElementById("ProgresString").innerHTML =progstring
+
 
         }
     }
@@ -972,36 +1172,90 @@ for (let i=0;i<(modo.length)+1; i++){
     if (document.getElementById("ChordIonian").checked){
       Dsharpionian=moveChr(3,CIonian)
       playChords(Dsharpionian)
+
+
+
+//////
+    indCionian= moveind(3,indCionian)
+    m3=createProgre(Cionianstr,Cionianstr2,indCionian)
+    console.log(m3)
+    document.getElementById("ProgresString").innerHTML =m3
+
     }
     
     if (document.getElementById("ChordDorian").checked){
       Dsharpdorian=moveChr(3,CDorian)
       playChords(Dsharpdorian)
+
+
+      
+      inddorian= moveind(3,indCdorian)  
+      progstring=createProgre(Cionianstr,Cdorianstr,inddorian)
+      console.log(progstring)
+      document.getElementById("ProgresString").innerHTML =progstring
     }
 
     if (document.getElementById("ChordPhrygian").checked){
       DsharpPhrygian=moveChr(3,CPhrygian)
       playChords(DsharpPhrygian)
+
+
+      
+      indPhrygian= moveind(3,indCPhrygian)  
+      progstring=createProgre(Cionianstr,CPhrygianstr,indPhrygian)
+      console.log(progstring)
+      document.getElementById("ProgresString").innerHTML =progstring
+
+
       }
      
     if (document.getElementById("ChordLydian").checked){
       DsharpLydian=moveChr(3,CLydian)
       playChords(DsharpLydian)
+
+      indCLydian= moveind(3,indCLydian)  
+      progstring=createProgre(Cionianstr,CLydianstr,indCLydian)
+      console.log(progstring)
+      document.getElementById("ProgresString").innerHTML =progstring
+
       }
 
     if (document.getElementById("ChordMyxolydian").checked){
       DsharpMyxolydian=moveChr(3,CMyxolydian)
       playChords(DsharpMyxolydian)
+
+
+      indCMyxolydian= moveind(3,indCMyxolydian)  
+      progstring=createProgre(Cionianstr,CMyxolydianstr,indCMyxolydian)
+      console.log(progstring)
+      document.getElementById("ProgresString").innerHTML =progstring
+
+
     }
 
     if (document.getElementById("ChordAeolian").checked){
       DsharpAeolian=moveChr(3,CAeolian)
       playChords(DsharpAeolian)
+
+
+      indCAeolian= moveind(3,indCAeolian)  
+      progstring=createProgre(Cionianstr,CAeolianstr,indCAeolian)
+      console.log(progstring)
+      document.getElementById("ProgresString").innerHTML =progstring
+
       }
 
     if (document.getElementById("ChordLocrian").checked){
       DsharpLocrian=moveChr(3,CLocrian)
       playChords(DsharpLocrian)
+
+
+      
+      indCLocrian= moveind(3,indCLocrian)  
+      progstring=createProgre(Cionianstr,CLocrianstr,indCLocrian)
+      console.log(progstring)
+      document.getElementById("ProgresString").innerHTML =progstring
+
 
       }
   }
@@ -1014,36 +1268,90 @@ if (document.getElementById("ChordE").checked){
   if (document.getElementById("ChordIonian").checked){
     Eionian=moveChr(4,CIonian)
     playChords(Eionian)
+
+
+    /////
+
+    indCionian= moveind(4,indCionian)
+    m3=createProgre(Cionianstr,Cionianstr2,indCionian)
+    console.log(m3)
+    document.getElementById("ProgresString").innerHTML =m3
   }
   
   if (document.getElementById("ChordDorian").checked){
     Edorian=moveChr(4,CDorian)
     playChords(Edorian)
+
+
+
+    
+    inddorian= moveind(4,indCdorian)  
+    progstring=createProgre(Cionianstr,Cdorianstr,inddorian)
+    console.log(progstring)
+    document.getElementById("ProgresString").innerHTML =progstring
   }
 
   if (document.getElementById("ChordPhrygian").checked){
     EPhrygian=moveChr(4,CPhrygian)
     playChords(EPhrygian)
+
+
+      
+    indPhrygian= moveind(4,indCPhrygian)  
+    progstring=createProgre(Cionianstr,CPhrygianstr,indPhrygian)
+    console.log(progstring)
+    document.getElementById("ProgresString").innerHTML =progstring
+
+
     }
    
   if (document.getElementById("ChordLydian").checked){
     ELydian=moveChr(4,CLydian)
     playChords(ELydian)
+
+
+    indCLydian= moveind(4,indCLydian)  
+    progstring=createProgre(Cionianstr,CLydianstr,indCLydian)
+    console.log(progstring)
+    document.getElementById("ProgresString").innerHTML =progstring
+
     }
 
   if (document.getElementById("ChordMyxolydian").checked){
     EMyxolydian=moveChr(4,CMyxolydian)
     playChords(EMyxolydian)
+
+
+
+    indCMyxolydian= moveind(4,indCMyxolydian)  
+    progstring=createProgre(Cionianstr,CMyxolydianstr,indCMyxolydian)
+    console.log(progstring)
+    document.getElementById("ProgresString").innerHTML =progstring
+
   }
 
   if (document.getElementById("ChordAeolian").checked){
     EAeolian=moveChr(4,CAeolian)
     playChords(EAeolian)
+
+
+    indCAeolian= moveind(4,indCAeolian)  
+    progstring=createProgre(Cionianstr,CAeolianstr,indCAeolian)
+    console.log(progstring)
+    document.getElementById("ProgresString").innerHTML =progstring
+
     }
 
   if (document.getElementById("ChordLocrian").checked){
     ELocrian=moveChr(4,CLocrian)
     playChords(ELocrian)
+
+
+          
+    indCLocrian= moveind(4,indCLocrian)  
+    progstring=createProgre(Cionianstr,CLocrianstr,indCLocrian)
+    console.log(progstring)
+    document.getElementById("ProgresString").innerHTML =progstring
 
     }
 }
@@ -1058,31 +1366,76 @@ if (document.getElementById("ChordF").checked){
   if (document.getElementById("ChordDorian").checked){
     Fdorian=moveChr(5,CDorian)
     playChords(Fdorian)
+
+
+    
+    inddorian= moveind(5,indCdorian)  
+    progstring=createProgre(Cionianstr,Cdorianstr,inddorian)
+    console.log(progstring)
+    document.getElementById("ProgresString").innerHTML =progstring
   }
 
   if (document.getElementById("ChordPhrygian").checked){
     FPhrygian=moveChr(5,CPhrygian)
     playChords(FPhrygian)
+
+
+      
+    indPhrygian= moveind(5,indCPhrygian)  
+    progstring=createProgre(Cionianstr,CPhrygianstr,indPhrygian)
+    console.log(progstring)
+    document.getElementById("ProgresString").innerHTML =progstring
+
     }
    
   if (document.getElementById("ChordLydian").checked){
     FLydian=moveChr(5,CLydian)
     playChords(FLydian)
+
+
+
+    indCLydian= moveind(5,indCLydian)  
+    progstring=createProgre(Cionianstr,CLydianstr,indCLydian)
+    console.log(progstring)
+    document.getElementById("ProgresString").innerHTML =progstring
+
     }
 
   if (document.getElementById("ChordMyxolydian").checked){
     FMyxolydian=moveChr(5,CMyxolydian)
     playChords(FMyxolydian)
+
+
+
+    indCMyxolydian= moveind(5,indCMyxolydian)  
+    progstring=createProgre(Cionianstr,CMyxolydianstr,indCMyxolydian)
+    console.log(progstring)
+    document.getElementById("ProgresString").innerHTML =progstring
+
   }
 
   if (document.getElementById("ChordAeolian").checked){
     FAeolian=moveChr(5,CAeolian)
     playChords(FAeolian)
+
+
+    indCAeolian= moveind(5,indCAeolian)  
+    progstring=createProgre(Cionianstr,CAeolianstr,indCAeolian)
+    console.log(progstring)
+    document.getElementById("ProgresString").innerHTML =progstring
+
     }
 
   if (document.getElementById("ChordLocrian").checked){
     FLocrian=moveChr(5,CLocrian)
     playChords(FLocrian)
+
+
+          
+    indCLocrian= moveind(5,indCLocrian)  
+    progstring=createProgre(Cionianstr,CLocrianstr,indCLocrian)
+    console.log(progstring)
+    document.getElementById("ProgresString").innerHTML =progstring
 
     }
 }
@@ -1097,31 +1450,77 @@ if (document.getElementById("ChordFsharp").checked){
   if (document.getElementById("ChordDorian").checked){
     Fsharpdorian=moveChr(6,CDorian)
     playChords(Fsharpdorian)
+
+
+    
+    inddorian= moveind(6,indCdorian)  
+    progstring=createProgre(Cionianstr,Cdorianstr,inddorian)
+    console.log(progstring)
+    document.getElementById("ProgresString").innerHTML =progstring
   }
 
   if (document.getElementById("ChordPhrygian").checked){
     FsharpPhrygian=moveChr(6,CPhrygian)
     playChords(FsharpPhrygian)
+
+
+      
+    indPhrygian= moveind(6,indCPhrygian)  
+    progstring=createProgre(Cionianstr,CPhrygianstr,indPhrygian)
+    console.log(progstring)
+    document.getElementById("ProgresString").innerHTML =progstring
+
+
     }
    
   if (document.getElementById("ChordLydian").checked){
     FsharpLydian=moveChr(6,CLydian)
     playChords(FsharpLydian)
+
+
+    indCLydian= moveind(6,indCLydian)  
+    progstring=createProgre(Cionianstr,CLydianstr,indCLydian)
+    console.log(progstring)
+    document.getElementById("ProgresString").innerHTML =progstring
+
     }
 
   if (document.getElementById("ChordMyxolydian").checked){
     FsharpMyxolydian=moveChr(6,CMyxolydian)
     playChords(FsharpMyxolydian)
+
+
+
+    indCMyxolydian= moveind(6,indCMyxolydian)  
+    progstring=createProgre(Cionianstr,CMyxolydianstr,indCMyxolydian)
+    console.log(progstring)
+    document.getElementById("ProgresString").innerHTML =progstring
+
   }
 
   if (document.getElementById("ChordAeolian").checked){
     FsharpAeolian=moveChr(6,CAeolian)
     playChords(FsharpAeolian)
+
+
+
+    indCAeolian= moveind(6,indCAeolian)  
+    progstring=createProgre(Cionianstr,CAeolianstr,indCAeolian)
+    console.log(progstring)
+    document.getElementById("ProgresString").innerHTML =progstring
+
     }
 
   if (document.getElementById("ChordLocrian").checked){
     FsharpLocrian=moveChr(6,CLocrian)
     playChords(FsharpLocrian)
+
+
+          
+    indCLocrian= moveind(6,indCLocrian)  
+    progstring=createProgre(Cionianstr,CLocrianstr,indCLocrian)
+    console.log(progstring)
+    document.getElementById("ProgresString").innerHTML =progstring
 
     }
 }
@@ -1138,32 +1537,78 @@ if (document.getElementById("ChordFsharp").checked){
     if (document.getElementById("ChordDorian").checked){
       Gdorian=moveChr(7,CDorian)
       playChords(Gdorian)
+
+      
+      inddorian= moveind(7,indCdorian)  
+      progstring=createProgre(Cionianstr,Cdorianstr,inddorian)
+      console.log(progstring)
+      document.getElementById("ProgresString").innerHTML =progstring
     }
   
     if (document.getElementById("ChordPhrygian").checked){
       GPhrygian=moveChr(7,CPhrygian)
       playChords(GPhrygian)
+
+
+      
+      indPhrygian= moveind(7,indCPhrygian)  
+      progstring=createProgre(Cionianstr,CPhrygianstr,indPhrygian)
+      console.log(progstring)
+      document.getElementById("ProgresString").innerHTML =progstring
+
+
       }
      
     if (document.getElementById("ChordLydian").checked){
       GLydian=moveChr(7,CLydian)
       playChords(GLydian)
+
+
+
+      indCLydian= moveind(7,indCLydian)  
+      progstring=createProgre(Cionianstr,CLydianstr,indCLydian)
+      console.log(progstring)
+      document.getElementById("ProgresString").innerHTML =progstring
+
       }
   
     if (document.getElementById("ChordMyxolydian").checked){
       GMyxolydian=moveChr(7,CMyxolydian)
       playChords(GMyxolydian)
+
+
+
+
+      indCMyxolydian= moveind(7,indCMyxolydian)  
+      progstring=createProgre(Cionianstr,CMyxolydianstr,indCMyxolydian)
+      console.log(progstring)
+      document.getElementById("ProgresString").innerHTML =progstring
+
     }
   
     if (document.getElementById("ChordAeolian").checked){
       GAeolian=moveChr(7,CAeolian)
       playChords(GAeolian)
+
+
+
+      indCAeolian= moveind(7,indCAeolian)  
+      progstring=createProgre(Cionianstr,CAeolianstr,indCAeolian)
+      console.log(progstring)
+      document.getElementById("ProgresString").innerHTML =progstring
+
       }
   
     if (document.getElementById("ChordLocrian").checked){
       GLocrian=moveChr(7,CLocrian)
       playChords(GLocrian)
   
+
+            
+      indCLocrian= moveind(7,indCLocrian)  
+      progstring=createProgre(Cionianstr,CLocrianstr,indCLocrian)
+      console.log(progstring)
+      document.getElementById("ProgresString").innerHTML =progstring
       }
   }    
 
@@ -1177,31 +1622,78 @@ if (document.getElementById("ChordGsharp").checked){
   if (document.getElementById("ChordDorian").checked){
     Gsharpdorian=moveChr(8,CDorian)
     playChords(Gsharpdorian)
+
+
+    
+    inddorian= moveind(8,indCdorian)  
+    progstring=createProgre(Cionianstr,Cdorianstr,inddorian)
+    console.log(progstring)
+    document.getElementById("ProgresString").innerHTML =progstring
   }
 
   if (document.getElementById("ChordPhrygian").checked){
     GsharpPhrygian=moveChr(8,CPhrygian)
     playChords(GsharpPhrygian)
+
+      
+    indPhrygian= moveind(8,indCPhrygian)  
+    progstring=createProgre(Cionianstr,CPhrygianstr,indPhrygian)
+    console.log(progstring)
+    document.getElementById("ProgresString").innerHTML =progstring
+
+
+
     }
    
   if (document.getElementById("ChordLydian").checked){
     GsharpLydian=moveChr(8,CLydian)
     playChords(GsharpLydian)
+
+
+
+    indCLydian= moveind(8,indCLydian)  
+    progstring=createProgre(Cionianstr,CLydianstr,indCLydian)
+    console.log(progstring)
+    document.getElementById("ProgresString").innerHTML =progstring
+
     }
 
   if (document.getElementById("ChordMyxolydian").checked){
     GsharpMyxolydian=moveChr(8,CMyxolydian)
     playChords(GsharpMyxolydian)
+
+
+
+    indCMyxolydian= moveind(8,indCMyxolydian)  
+    progstring=createProgre(Cionianstr,CMyxolydianstr,indCMyxolydian)
+    console.log(progstring)
+    document.getElementById("ProgresString").innerHTML =progstring
+
   }
 
   if (document.getElementById("ChordAeolian").checked){
     GsharpAeolian=moveChr(8,CAeolian)
     playChords(GsharpAeolian)
+
+
+
+    indCAeolian= moveind(8,indCAeolian)  
+    progstring=createProgre(Cionianstr,CAeolianstr,indCAeolian)
+    console.log(progstring)
+    document.getElementById("ProgresString").innerHTML =progstring
+
     }
 
   if (document.getElementById("ChordLocrian").checked){
     GsharpLocrian=moveChr(8,CLocrian)
     playChords(GsharpLocrian)
+
+
+          
+    indCLocrian= moveind(8,indCLocrian)  
+    progstring=createProgre(Cionianstr,CLocrianstr,indCLocrian)
+    console.log(progstring)
+    document.getElementById("ProgresString").innerHTML =progstring
 
     }
 }
@@ -1217,31 +1709,75 @@ if (document.getElementById("ChordGsharp").checked){
       if (document.getElementById("ChordDorian").checked){
         Adorian=moveChr(9,CDorian)
         playChords(Adorian)
+
+        
+        inddorian= moveind(9,indCdorian)  
+        progstring=createProgre(Cionianstr,Cdorianstr,inddorian)
+        console.log(progstring)
+        document.getElementById("ProgresString").innerHTML =progstring
       }
     
       if (document.getElementById("ChordPhrygian").checked){
         APhrygian=moveChr(9,CPhrygian)
         playChords(APhrygian)
+
+      
+        indPhrygian= moveind(9,indCPhrygian)  
+        progstring=createProgre(Cionianstr,CPhrygianstr,indPhrygian)
+        console.log(progstring)
+        document.getElementById("ProgresString").innerHTML =progstring
+
+
         }
        
       if (document.getElementById("ChordLydian").checked){
         ALydian=moveChr(9,CLydian)
         playChords(ALydian)
+
+
+        indCLydian= moveind(9,indCLydian)  
+        progstring=createProgre(Cionianstr,CLydianstr,indCLydian)
+        console.log(progstring)
+        document.getElementById("ProgresString").innerHTML =progstring
+
         }
     
       if (document.getElementById("ChordMyxolydian").checked){
         AMyxolydian=moveChr(9,CMyxolydian)
         playChords(AMyxolydian)
+
+
+
+
+        indCMyxolydian= moveind(9,indCMyxolydian)  
+        progstring=createProgre(Cionianstr,CMyxolydianstr,indCMyxolydian)
+        console.log(progstring)
+        document.getElementById("ProgresString").innerHTML =progstring
+
       }
     
       if (document.getElementById("ChordAeolian").checked){
         AAeolian=moveChr(9,CAeolian)
         playChords(AAeolian)
+
+
+        indCAeolian= moveind(9,indCAeolian)  
+        progstring=createProgre(Cionianstr,CAeolianstr,indCAeolian)
+        console.log(progstring)
+        document.getElementById("ProgresString").innerHTML =progstring
+
         }
     
       if (document.getElementById("ChordLocrian").checked){
         ALocrian=moveChr(9,CLocrian)
         playChords(ALocrian)
+
+
+              
+      indCLocrian= moveind(9,indCLocrian)  
+      progstring=createProgre(Cionianstr,CLocrianstr,indCLocrian)
+      console.log(progstring)
+      document.getElementById("ProgresString").innerHTML =progstring
     
         }
     }    
@@ -1257,31 +1793,75 @@ if (document.getElementById("ChordAsharp").checked){
   if (document.getElementById("ChordDorian").checked){
     Asharpdorian=moveChr(10,CDorian)
     playChords(Asharpdorian)
+
+    
+    inddorian= moveind(10,indCdorian)  
+    progstring=createProgre(Cionianstr,Cdorianstr,inddorian)
+    console.log(progstring)
+    document.getElementById("ProgresString").innerHTML =progstring
   }
 
   if (document.getElementById("ChordPhrygian").checked){
     AsharpPhrygian=moveChr(10,CPhrygian)
     playChords(AsharpPhrygian)
+
+
+      
+    indPhrygian= moveind(10,indCPhrygian)  
+    progstring=createProgre(Cionianstr,CPhrygianstr,indPhrygian)
+    console.log(progstring)
+    document.getElementById("ProgresString").innerHTML =progstring
+
+
     }
    
   if (document.getElementById("ChordLydian").checked){
     AsharpLydian=moveChr(10,CLydian)
     playChords(AsharpLydian)
+
+
+
+    indCLydian= moveind(10,indCLydian)  
+    progstring=createProgre(Cionianstr,CLydianstr,indCLydian)
+    console.log(progstring)
+    document.getElementById("ProgresString").innerHTML =progstring
+
     }
 
   if (document.getElementById("ChordMyxolydian").checked){
     AsharpMyxolydian=moveChr(10,CMyxolydian)
     playChords(AsharpMyxolydian)
+
+
+    indCMyxolydian= moveind(10,indCMyxolydian)  
+    progstring=createProgre(Cionianstr,CMyxolydianstr,indCMyxolydian)
+    console.log(progstring)
+    document.getElementById("ProgresString").innerHTML =progstring
+
+
   }
 
   if (document.getElementById("ChordAeolian").checked){
     AsharpAeolian=moveChr(10,CAeolian)
     playChords(AsharpAeolian)
+
+
+    indCAeolian= moveind(10,indCAeolian)  
+    progstring=createProgre(Cionianstr,CAeolianstr,indCAeolian)
+    console.log(progstring)
+    document.getElementById("ProgresString").innerHTML =progstring
+
     }
 
   if (document.getElementById("ChordLocrian").checked){
     AsharpLocrian=moveChr(10,CLocrian)
     playChords(AsharpLocrian)
+
+      
+    indCLocrian= moveind(10,indCLocrian)  
+    progstring=createProgre(Cionianstr,CLocrianstr,indCLocrian)
+    console.log(progstring)
+    document.getElementById("ProgresString").innerHTML =progstring
 
     }
 }
@@ -1296,31 +1876,75 @@ if (document.getElementById("ChordB").checked){
   if (document.getElementById("ChordDorian").checked){
     Bdorian=moveChr(11,CDorian)
     playChords(Bdorian)
+
+    
+    inddorian= moveind(11,indCdorian)  
+    progstring=createProgre(Cionianstr,Cdorianstr,inddorian)
+    console.log(progstring)
+    document.getElementById("ProgresString").innerHTML =progstring
   }
 
   if (document.getElementById("ChordPhrygian").checked){
     BPhrygian=moveChr(11,CPhrygian)
     playChords(BPhrygian)
+
+      
+    indPhrygian= moveind(11,indCPhrygian)  
+    progstring=createProgre(Cionianstr,CPhrygianstr,indPhrygian)
+    console.log(progstring)
+    document.getElementById("ProgresString").innerHTML =progstring
+
+
+
     }
    
   if (document.getElementById("ChordLydian").checked){
     BLydian=moveChr(11,CLydian)
     playChords(BLydian)
+
+
+
+    indCLydian= moveind(11,indCLydian)  
+    progstring=createProgre(Cionianstr,CLydianstr,indCLydian)
+    console.log(progstring)
+    document.getElementById("ProgresString").innerHTML =progstring
+
     }
 
   if (document.getElementById("ChordMyxolydian").checked){
     BMyxolydian=moveChr(11,CMyxolydian)
     playChords(BMyxolydian)
+
+
+
+
+    indCMyxolydian= moveind(11,indCMyxolydian)  
+    progstring=createProgre(Cionianstr,CMyxolydianstr,indCMyxolydian)
+    console.log(progstring)
+    document.getElementById("ProgresString").innerHTML =progstring
+
   }
 
   if (document.getElementById("ChordAeolian").checked){
     BAeolian=moveChr(11,CAeolian)
     playChords(BAeolian)
+
+    indCAeolian= moveind(11,indCAeolian)  
+    progstring=createProgre(Cionianstr,CAeolianstr,indCAeolian)
+    console.log(progstring)
+    document.getElementById("ProgresString").innerHTML =progstring
+
     }
 
   if (document.getElementById("ChordLocrian").checked){
     BLocrian=moveChr(11,CLocrian)
     playChords(BLocrian)
+
+      
+    indCLocrian= moveind(11,indCLocrian)  
+    progstring=createProgre(Cionianstr,CLocrianstr,indCLocrian)
+    console.log(progstring)
+    document.getElementById("ProgresString").innerHTML =progstring
 
     }
 }    
